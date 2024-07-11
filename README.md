@@ -43,6 +43,37 @@ Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Lang
 - Adjustable timeout for RSS feed fetching
 - Control over concurrent feed fetches
 
+## Process Overview
+
+The following flowchart illustrates the OPML to JSON conversion process:
+
+```mermaid
+graph TD
+    A[Start] --> B[Parse OPML File]
+    B --> C{Fetch RSS?}
+    C -->|Yes| D[Fetch RSS Feeds Concurrently]
+    C -->|No| E[Create JSON Structure]
+    D --> E
+    E --> F[Generate JSON Output]
+    F --> G[Write to File]
+    G --> H[End]
+
+    style A fill:#f9d71c,stroke:#333,stroke-width:2px
+    style H fill:#f9d71c,stroke:#333,stroke-width:2px
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+1. The process begins by parsing the input OPML file.
+2. If RSS fetching is enabled, the tool concurrently fetches RSS feeds for each podcast.
+3. A JSON structure is created, incorporating the OPML data and fetched RSS information (if applicable).
+4. The JSON output is generated.
+5. Finally, the resulting JSON is written to the specified output file.
+
+This streamlined process allows for efficient handling of podcast subscription data, with optional RSS feed fetching for comprehensive podcast information.
+
 ## Pain Points Solved
 
 Go-OPML addresses several challenges faced by podcast enthusiasts and developers working with podcast data:
@@ -387,34 +418,3 @@ We would like to express our gratitude to the creators and maintainers of the fo
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
 
 Additionally, this work adheres to the principles of the [Waqf General Public License](https://github.com/ojuba-org/waqf), aiming to make the work a perpetual charitable endowment (Waqf) for the benefit of all Muslims.
-
-## Process Overview
-
-The following flowchart illustrates the OPML to JSON conversion process:
-
-```mermaid
-graph TD
-    A[Start] --> B[Parse OPML File]
-    B --> C{Fetch RSS?}
-    C -->|Yes| D[Fetch RSS Feeds Concurrently]
-    C -->|No| E[Create JSON Structure]
-    D --> E
-    E --> F[Generate JSON Output]
-    F --> G[Write to File]
-    G --> H[End]
-
-    style A fill:#f9d71c,stroke:#333,stroke-width:2px
-    style H fill:#f9d71c,stroke:#333,stroke-width:2px
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bfb,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px
-```
-
-1. The process begins by parsing the input OPML file.
-2. If RSS fetching is enabled, the tool concurrently fetches RSS feeds for each podcast.
-3. A JSON structure is created, incorporating the OPML data and fetched RSS information (if applicable).
-4. The JSON output is generated.
-5. Finally, the resulting JSON is written to the specified output file.
-
-This streamlined process allows for efficient handling of podcast subscription data, with optional RSS feed fetching for comprehensive podcast information.
