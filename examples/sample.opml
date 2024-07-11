@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml>
+    <head/>
+    <body version="1.0">
+        <outline xmlUrl="https://nathanlatkathetop.libsyn.com/rss" title="SaaS Interviews with CEOs, Startups, Founders"/>
+        <outline xmlUrl="https://feeds.soundcloud.com/users/soundcloud:users:388437987/sounds.rss" title="How I Raised It - The podcast where we interview startup founders who raised capital."/>
+        <outline xmlUrl="https://feeds.megaphone.fm/thediaryofaceo" title="The Diary Of A CEO with Steven Bartlett"/>
+        <outline xmlUrl="https://feeds.simplecast.com/e_GRxR9a" title="Azeem Azhar's Exponential View"/>
+        <outline xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/cold-call" title="Cold Call"/>
+        <outline xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/coaching-real-leaders" title="Coaching Real Leaders"/>
+        <outline xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/dear-hbr" title="Dear HBR:"/>
+        <outline xmlUrl="https://hbr-rss.streamguys1.com/on-strategy/on-strategy.xml" title="HBR On Strategy"/>
+        <outline xmlUrl="https://feeds.feedburner.com/harvardbusiness/on-leadership" title="HBR On Leadership"/>
+        <outline xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/ideacast" title="HBR IdeaCast"/>
+        <outline xmlUrl="https://pmostrategies.com/feed/podcast/" title="PMO Strategies"/>
+        <outline xmlUrl="https://feeds.soundcloud.com/playlists/soundcloud:playlists:926996365/sounds.rss" title="بودكاست نقطة"/>
+        <outline xmlUrl="https://feed.podbean.com/noqta/feed.xml" title="بودكاست نقطة"/>
+        <outline xmlUrl="https://feeds.soundcloud.com/users/soundcloud:users:725571439/sounds.rss" title="عبدالله العجيري"/>
+        <outline xmlUrl="https://feeds.transistor.fm/how-to-empower" title="How to empower..."/>
+        <outline xmlUrl="https://feeds.transistor.fm/economics-in-business" title="Economics in business"/>
+        <outline xmlUrl="https://feeds.buzzsprout.com/1727753.rss" title="PwC’s Workforce podcast"/>
+        <outline xmlUrl="https://pmpexamsuccesssecret.libsyn.com/rss" title="PMP Exam Prep Success Secrets with Scott"/>
+        <outline xmlUrl="https://feeds.megaphone.fm/RSV1597324942" title="The Tucker Carlson Show"/>
+    </body>
+</opml>
