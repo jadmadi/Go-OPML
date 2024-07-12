@@ -3,24 +3,38 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML)
 [![Release](https://img.shields.io/github/v/release/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML/releases)
+[![Go Reference](https://pkg.go.dev/badge/github.com/jadmadi/Go-OPML.svg)](https://pkg.go.dev/github.com/jadmadi/Go-OPML)
 
 Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Language) files to JSON format and optionally fetches RSS feeds for podcasts listed in the OPML file.
+
+## Package Documentation
+
+The official package documentation is now available on [pkg.go.dev](https://pkg.go.dev/github.com/jadmadi/Go-OPML). Visit this page for detailed API documentation, examples, and more information about using Go-OPML in your projects.
 
 ## Table of Contents
 
 - [Go-OPML](#go-opml)
+  - [Package Documentation](#package-documentation)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Process Overview](#process-overview)
   - [Pain Points Solved](#pain-points-solved)
   - [Getting Started](#getting-started)
-  - [Installation](#installation)
+  - [Installation and Usage](#installation-and-usage)
+    - [Option 1: Using Go-OPML as a Library (Recommended)](#option-1-using-go-opml-as-a-library-recommended)
+    - [Option 2: Installing Go-OPML as a Command-Line Tool](#option-2-installing-go-opml-as-a-command-line-tool)
+      - [Using `go install`](#using-go-install)
+      - [Building from Source](#building-from-source)
+    - [Verifying Installation](#verifying-installation)
+    - [Troubleshooting](#troubleshooting)
+    - [Troubleshooting](#troubleshooting-1)
   - [Usage](#usage)
     - [Options](#options)
   - [Project Structure](#project-structure)
   - [Cross-Platform Compatibility](#cross-platform-compatibility)
   - [Examples](#examples)
   - [Output](#output)
-  - [Troubleshooting](#troubleshooting)
+  - [Troubleshooting](#troubleshooting-2)
   - [Performance Showcase](#performance-showcase)
     - [Test Configuration](#test-configuration)
     - [Test Results](#test-results)
@@ -31,7 +45,6 @@ Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Lang
   - [Contributing](#contributing)
   - [Acknowledgements](#acknowledgements)
   - [License](#license)
-  - [Process Overview](#process-overview)
 
 ## Features
 
@@ -112,30 +125,91 @@ To quickly get started with Go-OPML:
    ./Go-OPML -input your_file.opml -output result.json -fetch-rss
    ```
 
-## Installation
 
-1. Ensure you have Go installed on your system (version 1.16 or later recommended).
+## Installation and Usage
 
-2. Clone the repository:
+### Option 1: Using Go-OPML as a Library (Recommended)
+
+For most use cases, especially if you're integrating Go-OPML functionality into your Go projects, using it as a library is recommended:
+
+1. In your Go project, import the package:
+   ```go
+   import "github.com/jadmadi/Go-OPML"
+   ```
+
+2. Run `go mod tidy` to add the dependency to your project:
+   ```bash
+   go mod tidy
+   ```
+
+This method allows you to use Go-OPML's functions directly in your code. For usage examples and API details, please refer to the [package documentation](https://pkg.go.dev/github.com/jadmadi/Go-OPML).
+
+### Option 2: Installing Go-OPML as a Command-Line Tool
+
+If you need to use Go-OPML as a standalone command-line tool:
+
+#### Using `go install`
+
+Ensure you have Go 1.16 or later, then run:
+
+```bash
+go install github.com/jadmadi/Go-OPML/cmd/go-opml@latest
+```
+
+This installs the latest version of the Go-OPML CLI. You can then run it by typing `go-opml` in your terminal.
+
+To install a specific version:
+
+```bash
+go install github.com/jadmadi/Go-OPML/cmd/go-opml@v1.0.1
+```
+
+#### Building from Source
+
+For contributors or those who need more control:
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/jadmadi/Go-OPML.git
    cd Go-OPML
    ```
 
-3. Install dependencies:
+2. Install dependencies:
    ```bash
    go mod tidy
    ```
 
-4. Build the application:
+3. Build the application:
    ```bash
    go build -o build/Go-OPML cmd/go-opml/main.go
    ```
 
-5. To install the dependencies, run:
-   ```bash
-   go get github.com/mmcdole/gofeed
-   ```
+### Verifying Installation
+
+For CLI installations, verify by running:
+
+```bash
+go-opml --version
+```
+
+This should display the version number of Go-OPML.
+
+### Troubleshooting
+
+- If using as a library, ensure you're using the correct import path and have run `go mod tidy`.
+- For CLI usage, if the `go-opml` command is not found, check that your Go bin directory is in your PATH.
+- For any issues, please [open an issue](https://github.com/jadmadi/Go-OPML/issues) on our GitHub repository.
+
+### Troubleshooting
+
+- If the `go-opml` command is not found, ensure your Go bin directory is in your PATH. You can find your Go bin directory by running `go env GOPATH` and then add `/bin` to that path.
+
+- If you encounter any issues with dependencies, you can manually install them:
+  ```bash
+  go get github.com/mmcdole/gofeed
+  ```
+
+For any other installation issues, please [open an issue](https://github.com/jadmadi/Go-OPML/issues) on our GitHub repository.
 
 ## Usage
 
