@@ -1,9 +1,10 @@
-# Go-OPML
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML)
-[![Release](https://img.shields.io/github/v/release/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML/releases)
-[![Go Reference](https://pkg.go.dev/badge/github.com/jadmadi/Go-OPML.svg)](https://pkg.go.dev/github.com/jadmadi/Go-OPML)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Go Version](https://img.shields.io/github/go-mod/go-version/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML) [![Release](https://img.shields.io/github/v/release/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML/releases) [![Go Reference](https://pkg.go.dev/badge/github.com/jadmadi/Go-OPML.svg)](https://pkg.go.dev/github.com/jadmadi/Go-OPML)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jadmadi/Go-OPML)](https://goreportcard.com/report/github.com/jadmadi/Go-OPML)
+
+
+
+# Go-OPML
 
 Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Language) files to JSON format and optionally fetches RSS feeds for podcasts listed in the OPML file.
 
