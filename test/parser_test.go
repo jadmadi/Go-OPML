@@ -1,8 +1,12 @@
-package main
+package parser_test
 
 import (
+	"encoding/json"
 	"os"
 	"testing"
+	"time"
+
+	main "github.com/jadmadi/Go-OPML/cmd/go-opml"
 )
 
 func TestParseOPML(t *testing.T) {
@@ -28,7 +32,7 @@ func TestParseOPML(t *testing.T) {
 	}
 
 	// Parse the test OPML file
-	opml, err := ParseOPML(tempFile.Name())
+	opml, err := main.ParseOPML(tempFile.Name())
 	if err != nil {
 		t.Fatalf("Error parsing OPML: %v", err)
 	}
@@ -49,9 +53,9 @@ func TestParseOPML(t *testing.T) {
 
 func TestGenerateJSON(t *testing.T) {
 	// Create a test OPML struct
-	testOPML := &OPML{
-		Body: Body{
-			Outlines: []Outline{
+	testOPML := &main.OPML{
+		Body: main.Body{
+			Outlines: []main.Outline{
 				{XMLUrl: "https://example.com/feed1.rss", Title: "Test Feed 1"},
 				{XMLUrl: "https://example.com/feed2.rss", Title: "Test Feed 2"},
 			},
@@ -59,7 +63,7 @@ func TestGenerateJSON(t *testing.T) {
 	}
 
 	// Generate JSON
-	jsonData, err := GenerateJSON(testOPML)
+	jsonData, err := main.GenerateJSON(testOPML)
 	if err != nil {
 		t.Fatalf("Error generating JSON: %v", err)
 	}
@@ -78,5 +82,69 @@ func TestGenerateJSON(t *testing.T) {
 
 	if string(jsonData) != expectedJSON {
 		t.Errorf("Generated JSON does not match expected output.\nExpected: %s\nGot: %s", expectedJSON, string(jsonData))
+	}
+}
+
+func TestFetchRSSFeed(t *testing.T) {
+	// Test with a timeout that should work for most cases
+	timeout := 10 * time.Second
+	maxEpisodes := 5
+
+	// Test with a well-known RSS feed (this is an integration test)
+	// Note: This test requires internet connection
+	episodes, err := main.FetchRSSFeed("https://feeds.simplecast.com/e_GRxR9a", maxEpisodes, timeout)
+
+	// If the feed is accessible, we should get episodes
+	if err == nil {
+		if len(episodes) > maxEpisodes {
+			t.Errorf("Expected maximum %d episodes, got %d", maxEpisodes, len(episodes))
+		}
+
+		// Check if episodes have required fields
+		for i, episode := range episodes {
+			if episode.Title == "" {
+				t.Errorf("Episode %d has empty title", i)
+			}
+			if episode.PublishDate == "" {
+				t.Errorf("Episode %d has empty publish date", i)
+			}
+		}
+	} else {
+		t.Logf("RSS feed test skipped due to network error: %v", err)
+	}
+}
+
+func TestPodcastStructures(t *testing.T) {
+	// Test JSON marshaling of podcast structures
+	podcast := main.PodcastWithEpisodes{
+		Title: "Test Podcast",
+		URL:   "https://example.com/feed.rss",
+		Episodes: []main.EpisodeInfo{
+			{
+				Title:       "Episode 1",
+				Link:        "https://example.com/episode1",
+				PublishDate: "2024-01-01T12:00:00Z",
+				Description: "Test episode description",
+			},
+		},
+	}
+
+	jsonData, err := json.Marshal(podcast)
+	if err != nil {
+		t.Fatalf("Error marshaling podcast to JSON: %v", err)
+	}
+
+	var unmarshaled main.PodcastWithEpisodes
+	err = json.Unmarshal(jsonData, &unmarshaled)
+	if err != nil {
+		t.Fatalf("Error unmarshaling JSON: %v", err)
+	}
+
+	if unmarshaled.Title != podcast.Title {
+		t.Errorf("Expected title '%s', got '%s'", podcast.Title, unmarshaled.Title)
+	}
+
+	if len(unmarshaled.Episodes) != 1 {
+		t.Errorf("Expected 1 episode, got %d", len(unmarshaled.Episodes))
 	}
 }

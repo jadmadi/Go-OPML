@@ -139,6 +139,7 @@ func main() {
 	fmt.Printf("Successfully processed OPML and generated JSON. Output written to %s\n", *outputFile)
 }
 
+// Export ParseOPML function for testing
 func ParseOPML(filename string) (*OPML, error) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
@@ -154,6 +155,7 @@ func ParseOPML(filename string) (*OPML, error) {
 	return &opml, nil
 }
 
+// Export FetchRSSFeed function for testing
 func FetchRSSFeed(feedURL string, maxEpisodes int, timeout time.Duration) ([]EpisodeInfo, error) {
 	fp := gofeed.NewParser()
 	fp.Client = &http.Client{Timeout: timeout}
