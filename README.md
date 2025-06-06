@@ -1,4 +1,3 @@
-
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Go Version](https://img.shields.io/github/go-mod/go-version/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML) [![Release](https://img.shields.io/github/v/release/jadmadi/Go-OPML)](https://github.com/jadmadi/Go-OPML/releases) [![Go Reference](https://pkg.go.dev/badge/github.com/jadmadi/Go-OPML.svg)](https://pkg.go.dev/github.com/jadmadi/Go-OPML)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jadmadi/Go-OPML)](https://goreportcard.com/report/github.com/jadmadi/Go-OPML)
 
@@ -42,6 +41,7 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
     - [Performance Analysis](#performance-analysis)
   - [Technologies Used](#technologies-used)
   - [Dependencies and Modules](#dependencies-and-modules)
+  - [Checking for Dependency Updates](#checking-for-dependency-updates)
   - [Author](#author)
   - [Contributing](#contributing)
   - [Acknowledgements](#acknowledgements)
@@ -466,6 +466,41 @@ To install the dependencies, run:
 
 ```bash
 go get github.com/mmcdole/gofeed
+```
+
+### Checking for Dependency Updates
+
+To ensure your Go-OPML installation uses the latest dependencies:
+
+1. **Check for outdated dependencies:**
+   ```bash
+   go list -u -m all
+   ```
+   This shows all modules with available updates marked with `[available_version]`.
+
+2. **Update all dependencies:**
+   ```bash
+   go get -u ./...
+   ```
+
+3. **Update a specific dependency:**
+   ```bash
+   go get -u github.com/mmcdole/gofeed
+   ```
+
+4. **Clean up module files:**
+   ```bash
+   go mod tidy
+   ```
+
+5. **Verify everything works:**
+   ```bash
+   go test ./...
+   ```
+
+**Note:** After updating dependencies, rebuild the application to ensure you're using the latest versions:
+```bash
+go build -o build/Go-OPML cmd/go-opml/main.go
 ```
 
 ## Author
