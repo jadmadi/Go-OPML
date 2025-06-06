@@ -242,22 +242,27 @@ echo "1. Go to: https://github.com/jadmadi/Go-OPML/releases/new"
 echo "2. Choose tag: $NEXT_VERSION"
 echo "3. Release title: Go-OPML $NEXT_VERSION"
 echo "4. Copy content from release-notes.md as description"
-echo "5. Upload all files from build/ directory:"
-echo "   - Go-OPML.exe"
-echo "   - Go-OPML-mac-intel" 
-echo "   - Go-OPML-mac-arm64"
-echo "   - Go-OPML-linux"
-echo "   - checksums.txt"
+echo "5. Upload binaries by dragging files from build/ directory:"
+echo "   📁 build/Go-OPML.exe (Windows 64-bit)"
+echo "   📁 build/Go-OPML-mac-intel (macOS Intel)" 
+echo "   📁 build/Go-OPML-mac-arm64 (macOS Apple Silicon)"
+echo "   📁 build/Go-OPML-linux (Linux 64-bit)"
+echo "   📁 build/checksums.txt (SHA256 checksums)"
 echo "6. Click 'Publish release'"
 echo ""
+echo "💡 Tip: You can drag and drop all files at once into the GitHub release page"
+echo ""
 
-# Show file sizes for reference
-echo "📊 Binary sizes:"
-du -h build/Go-OPML* | sort -h
+# Show file sizes and checksums for reference
+echo "📊 Files ready for upload:"
+ls -lah build/
+echo ""
+echo "📋 SHA256 Checksums:"
+cat build/checksums.txt
 echo ""
 
 log_success "Automated release process completed successfully! 🚀"
-log_info "Don't forget to create the GitHub release with the generated binaries."
+log_warning "📤 Don't forget to upload the binaries to complete the GitHub release."
 
 # Optional: Open GitHub releases page
 if command -v xdg-open &> /dev/null; then
