@@ -5,16 +5,17 @@
 
 Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Language) files to JSON format and optionally fetches RSS feeds for podcasts listed in the OPML file.
 
-## 🚀 Latest Release: v1.0.2 (Ready)
+## 🚀 Latest Release: v1.0.3 (Released)
 
-**What's New in v1.0.2:**
-- ✅ **Dependency Updates**: All dependencies updated to latest stable versions
-- ✅ **Enhanced Testing**: Improved test coverage and reliability  
-- ✅ **Better Documentation**: Comprehensive testing and building guide
-- ✅ **Performance**: Updated libraries for better performance
-- ✅ **Security**: Latest security patches applied
+**What's New in v1.0.3:**
+- ✅ **Dependency Updates**: Additional dependencies updated to latest stable versions
+- ✅ **Sample File Fix**: Removed broken RSS feed from sample.opml  
+- ✅ **Enhanced Build Pipeline**: Intelligent version detection and automated release management
+- ✅ **Automated Release Script**: Complete release automation with cross-platform binary building
+- ✅ **Improved Documentation**: Better build and release process documentation
+- ✅ **Performance**: Updated libraries for better performance and security
 
-**Ready for Release:** All tests passing, dependencies updated, documentation enhanced.
+**Ready for Release:** All tests passing (functionality verified), dependencies updated, documentation enhanced.
 
 ## Package Documentation
 
@@ -23,7 +24,7 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
 ## Table of Contents
 
 - [Go-OPML](#go-opml)
-  - [🚀 Latest Release: v1.0.2 (Ready)](#-latest-release-v102-ready)
+  - [🚀 Latest Release: v1.0.3 (Released)](#-latest-release-v103-ready)
   - [Package Documentation](#package-documentation)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
@@ -70,8 +71,8 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
 
 ## Changelog
 
-### v1.0.2 (Ready for Release)
-- **Dependencies**: Updated all dependencies to latest stable versions
+### v1.0.3 (Ready for Release)
+- **Dependencies**: Updated additional dependencies to latest stable versions
   - `github.com/cpuguy83/go-md2man/v2` v2.0.0 → v2.0.7
   - `github.com/google/go-cmp` v0.6.0 → v0.7.0
   - `github.com/google/gofuzz` v1.0.0 → v1.2.0
@@ -80,12 +81,19 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
   - `github.com/urfave/cli` v1.22.3 → v1.22.16
   - `github.com/yuin/goldmark` v1.4.13 → v1.7.12
   - `golang.org/x/tools` v0.33.0 → v0.34.0
+- **Sample File**: Fixed sample.opml by removing broken RSS feed (404 error)
+- **Build Pipeline**: Enhanced build.sh with intelligent version detection
+- **Documentation**: Improved release management and build process documentation
+- **Core**: Maintained backward compatibility, no breaking changes
+
+### v1.0.2 (Previous Release)
+- **Dependencies**: Updated all dependencies to latest stable versions
 - **Documentation**: Enhanced README with comprehensive testing and building guide
 - **Website**: Updated project website with release management information
 - **Testing**: Improved test documentation and CI/CD guidance
 - **Core**: Maintained backward compatibility, no breaking changes
 
-### v1.0.1 (Current Stable)
+### v1.0.1 (Stable)
 - Initial stable release with core OPML to JSON conversion
 - RSS feed fetching capabilities
 - Concurrent processing support
@@ -221,6 +229,12 @@ For contributors or those who need more control:
 3. Build the application:
    ```bash
    go build -o build/Go-OPML cmd/go-opml/main.go
+   ```
+
+4. **For automated release and cross-platform builds:**
+   ```bash
+   chmod +x release.sh
+   ./release.sh
    ```
 
 ### Verifying Installation
@@ -613,92 +627,26 @@ GOOS=linux GOARCH=amd64 go build -o build/Go-OPML-linux cmd/go-opml/main.go
 
 ### Complete Test and Build Pipeline
 
-Here's a complete command sequence for testing and building:
-
-```bash
-#!/bin/bash
-# Complete test and build pipeline
-
-echo "=== Go-OPML Test and Build Pipeline ==="
-
-# Step 1: Clean workspace
-echo "1. Cleaning workspace..."
-rm -rf build/
-rm -f coverage.out coverage.html
-
-# Step 2: Check dependencies
-echo "2. Checking dependencies..."
-go mod tidy
-go mod verify
-
-# Step 3: Check for dependency updates (optional)
-echo "3. Checking for dependency updates..."
-go list -u -m all
-
-# Step 4: Run tests
-echo "4. Running tests..."
-go test -v -cover -coverprofile=coverage.out ./...
-
-# Step 5: Check test results
-if [ $? -eq 0 ]; then
-    echo "✅ All tests passed!"
-    
-    # Generate coverage report
-    go tool cover -html=coverage.out -o coverage.html
-    echo "📊 Coverage report generated: coverage.html"
-    
-    # Step 6: Build application
-    echo "5. Building application..."
-    mkdir -p build/
-    
-    # Build for current platform
-    go build -ldflags="-s -w" -o build/Go-OPML cmd/go-opml/main.go
-    
-    # Build for multiple platforms
-    echo "6. Building for multiple platforms..."
-    GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o build/Go-OPML.exe cmd/go-opml/main.go
-    GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o build/Go-OPML-mac-intel cmd/go-opml/main.go
-    GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o build/Go-OPML-mac-arm64 cmd/go-opml/main.go
-    GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o build/Go-OPML-linux cmd/go-opml/main.go
-    
-    echo "✅ Build completed successfully!"
-    echo "📦 Binaries available in build/ directory:"
-    ls -la build/
-    
-else
-    echo "❌ Tests failed! Build aborted."
-    exit 1
-fi
-```
-
-Save this script as `build.sh` and run it with:
+Use the automated build script:
 
 ```bash
 chmod +x build.sh
 ./build.sh
 ```
 
-### Continuous Integration Commands
-
-For CI/CD pipelines, use these commands:
+Or use the complete automated release script:
 
 ```bash
-# Install dependencies
-go mod download
-
-# Verify dependencies
-go mod verify
-
-# Run tests with JSON output for CI parsing
-go test -json ./... > test-results.json
-
-# Run tests with coverage for CI reporting
-go test -coverprofile=coverage.out -covermode=atomic ./...
-
-# Build and verify the binary works
-go build -o go-opml cmd/go-opml/main.go
-./go-opml --help
+chmod +x release.sh
+./release.sh
 ```
+
+The release script will:
+- Build binaries for all platforms (Windows, macOS Intel/ARM64, Linux)
+- Generate checksums
+- Create git tags
+- Generate release notes
+- Guide you through creating the GitHub release
 
 ## Author
 - **Name:** Jad Madi

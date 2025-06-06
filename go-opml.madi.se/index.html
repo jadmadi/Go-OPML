@@ -5,74 +5,211 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go-OPML: OPML to JSON Converter</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&family=Andika&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css?&subset=fab,fa-github" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     
     <style>
-        h1, h2, h3, h4, h5, h6 { font-family: 'Amaranth', sans-serif; }
-        body { font-family: 'Andika', sans-serif; }
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
         .hljs { 
-            background: #1a1a1a;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-family: 'Fira Code', monospace;
+            background: #0d1117 !important;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #6366f1;
+        }
+        .version-badge {
+            background: linear-gradient(45deg, #10b981, #059669);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background: #6366f1;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <header class="bg-blue-600 text-white py-6">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold">Go-OPML</h1>
-            <p class="mt-2 text-xl">OPML to JSON Converter with RSS Feed Fetching</p>
-            <a href="https://github.com/jadmadi/Go-OPML" class="text-white hover:text-blue-200 mt-2 inline-block">View on GitHub</a>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header with Gradient -->
+    <header class="gradient-bg text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="relative container mx-auto px-6 py-12">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-5xl font-bold mb-2">Go-OPML</h1>
+                    <p class="text-xl opacity-90">OPML to JSON Converter with RSS Feed Fetching</p>
+                </div>
+                <div class="text-right">
+                    <div class="version-badge text-white px-4 py-2 rounded-full text-sm font-semibold mb-2">
+                        v1.0.3 Ready for Release
+                    </div>
+                    <a href="https://github.com/jadmadi/Go-OPML" 
+                       class="inline-flex items-center px-6 py-3 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-all duration-300">
+                        <i class="fab fa-github mr-2"></i>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Latest Release Announcement -->
+            <div class="glass-card rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4">🚀 What's New in v1.0.3</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold mb-2">✅ Dependency Updates</h3>
+                        <p class="text-sm opacity-90">11 dependencies updated for better security and performance</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">🔧 Enhanced Build Pipeline</h3>
+                        <p class="text-sm opacity-90">Intelligent version detection and automated release management</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">🛠️ Sample File Fix</h3>
+                        <p class="text-sm opacity-90">Removed broken RSS feed from sample.opml</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">📚 Improved Documentation</h3>
+                        <p class="text-sm opacity-90">Better build process and release management docs</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <nav class="bg-blue-500 text-white py-2 sticky top-0 z-10">
-        <div class="container mx-auto px-4">
-            <ul class="flex space-x-4">
-                <li><a href="#features" class="hover:text-blue-200">Features</a></li>
-                <li><a href="#getting-started" class="hover:text-blue-200">Getting Started</a></li>
-                <li><a href="#usage" class="hover:text-blue-200">Usage</a></li>
-                <li><a href="#examples" class="hover:text-blue-200">Examples</a></li>
-                <li><a href="#performance" class="hover:text-blue-200">Performance</a></li>
-                <li><a href="#releases" class="hover:text-blue-200">Releases</a></li>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <ul class="flex space-x-8 py-4">
+                <li><a href="#features" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Features</a></li>
+                <li><a href="#getting-started" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Getting Started</a></li>
+                <li><a href="#usage" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Usage</a></li>
+                <li><a href="#examples" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Examples</a></li>
+                <li><a href="#performance" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Performance</a></li>
+                <li><a href="#releases" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Releases</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-8">
-        <section id="features" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Features</h2>
-            <ul class="list-disc list-inside space-y-2">
-                <li>Convert OPML files to JSON format</li>
-                <li>Fetch RSS feeds for podcasts (optional)</li>
-                <li>Concurrent RSS feed fetching for improved performance</li>
-                <li>Customizable number of episodes to fetch per podcast</li>
-                <li>Adjustable timeout for RSS feed fetching</li>
-                <li>Control over concurrent feed fetches</li>
-            </ul>
+    <main class="container mx-auto px-6 py-12">
+        <!-- Features Section -->
+        <section id="features" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">✨ Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-indigo-600 text-3xl mb-4">🔄</div>
+                    <h3 class="text-xl font-semibold mb-3">OPML to JSON Conversion</h3>
+                    <p class="text-gray-600">Convert OPML files to clean, structured JSON format for easy integration</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-green-600 text-3xl mb-4">📡</div>
+                    <h3 class="text-xl font-semibold mb-3">RSS Feed Fetching</h3>
+                    <p class="text-gray-600">Optionally fetch and include RSS feed data with episode information</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-blue-600 text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-semibold mb-3">Concurrent Processing</h3>
+                    <p class="text-gray-600">High-performance concurrent RSS feed fetching for faster processing</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-purple-600 text-3xl mb-4">🎛️</div>
+                    <h3 class="text-xl font-semibold mb-3">Customizable Options</h3>
+                    <p class="text-gray-600">Control episode count, timeouts, and concurrency settings</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-red-600 text-3xl mb-4">🕒</div>
+                    <h3 class="text-xl font-semibold mb-3">Timeout Control</h3>
+                    <p class="text-gray-600">Adjustable timeout settings for reliable RSS feed processing</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="text-yellow-600 text-3xl mb-4">🌐</div>
+                    <h3 class="text-xl font-semibold mb-3">Cross-Platform</h3>
+                    <p class="text-gray-600">Works on Windows, macOS, and Linux with native binaries</p>
+                </div>
+            </div>
         </section>
 
-        <section id="getting-started" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Getting Started</h2>
-            <ol class="list-decimal list-inside space-y-2">
-                <li>Download the latest release for your platform from the <a href="https://github.com/jadmadi/Go-OPML/releases" class="text-blue-600 hover:underline">GitHub releases page</a></li>
-                <li>Extract the downloaded file</li>
-                <li>Open a terminal and navigate to the extracted directory</li>
-                <li>Run the following command to convert an OPML file to JSON:
-                    <pre><code class="language-bash">./Go-OPML -input your_file.opml -output result.json</code></pre>
-                </li>
-                <li>To also fetch RSS feeds, add the <code>-fetch-rss</code> flag:
-                    <pre><code class="language-bash">./Go-OPML -input your_file.opml -output result.json -fetch-rss</code></pre>
-                </li>
-            </ol>
+        <!-- Getting Started Section -->
+        <section id="getting-started" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">🚀 Getting Started</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Quick Start</h3>
+                        <ol class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
+                                <div>
+                                    <p class="font-medium">Download the latest release</p>
+                                    <a href="https://github.com/jadmadi/Go-OPML/releases" class="text-indigo-600 hover:underline text-sm">GitHub releases page →</a>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
+                                <p>Extract the downloaded file</p>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
+                                <p>Open terminal and navigate to the directory</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Basic Commands</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Convert OPML to JSON:</p>
+                                <pre class="text-xs"><code class="language-bash">./Go-OPML -input your_file.opml -output result.json</code></pre>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">With RSS feed fetching:</p>
+                                <pre class="text-xs"><code class="language-bash">./Go-OPML -input your_file.opml -output result.json -fetch-rss</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="usage" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Usage</h2>
+        <!-- Usage Section -->
+        <section id="usage" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">📚 Usage</h2>
             <pre><code class="language-bash">./Go-OPML -input &lt;input_opml_file&gt; -output &lt;output_json_file&gt; [options]</code></pre>
             <h3 class="text-2xl font-bold mt-4 mb-2">Options</h3>
             <pre><code class="language-bash">
@@ -91,8 +228,9 @@
             </code></pre>
         </section>
 
-        <section id="examples" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Examples</h2>
+        <!-- Examples Section -->
+        <section id="examples" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">📂 Examples</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <h3 class="text-2xl font-bold mb-2">Sample OPML</h3>
@@ -154,8 +292,9 @@
             </div>
         </section>
 
-        <section id="performance" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Performance Showcase</h2>
+        <!-- Performance Showcase Section -->
+        <section id="performance" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">⚙️ Performance Showcase</h2>
             <div class="bg-white shadow-md rounded p-6">
                 <h3 class="text-2xl font-bold mb-2">Test Results</h3>
                 <pre><code class="language-bash">
@@ -174,173 +313,137 @@ sys     0m0.238s
             </div>
         </section>
 
-        <section id="releases" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Release Management</h2>
-            <div class="bg-white shadow-md rounded p-6">
-                <h3 class="text-2xl font-bold mb-4">Current Version</h3>
-                <p class="mb-4">Latest stable release: <span class="bg-green-100 text-green-800 px-2 py-1 rounded">v1.0.1</span></p>
-                
-                <h3 class="text-2xl font-bold mb-4">Before Releasing New Version</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">1. Check Dependencies</h4>
-                        <pre><code class="language-bash">
-# Check for updates
-go list -u -m all
-
-# Update dependencies
-go get -u ./...
-
-# Clean up
-go mod tidy
-                        </code></pre>
-                        <div class="mt-3 p-3 bg-blue-50 border-l-4 border-blue-400">
-                            <p class="text-sm text-blue-800"><strong>Interpreting Output:</strong></p>
-                            <ul class="text-xs text-blue-700 mt-1">
-                                <li>• No brackets: Current version</li>
-                                <li>• [v1.2.3]: Update available</li>
-                                <li>• [v1.2.3-pre]: Pre-release available</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">2. Run Tests</h4>
-                        <pre><code class="language-bash">
-# Run all tests
-go test ./...
-
-# Test with race detection
-go test -race ./...
-
-# Benchmark tests
-go test -bench=.
-                        </code></pre>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">3. Version Tagging</h4>
-                        <pre><code class="language-bash">
-# Create and push tag
-git tag v1.0.2
-git push origin v1.0.2
-
-# Or use semantic versioning
-git tag v1.1.0  # for new features
-git tag v2.0.0  # for breaking changes
-                        </code></pre>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">4. Cross-Platform Build</h4>
-                        <pre><code class="language-bash">
-# Build for all platforms
-./scripts/build-all.sh
-
-# Or manually:
-GOOS=windows GOARCH=amd64 go build -o build/Go-OPML.exe cmd/go-opml/main.go
-GOOS=darwin GOARCH=amd64 go build -o build/Go-OPML-mac cmd/go-opml/main.go
-GOOS=linux GOARCH=amd64 go build -o build/Go-OPML-linux cmd/go-opml/main.go
-                        </code></pre>
+        <!-- Release Management Section -->
+        <section id="releases" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">📋 Release Management</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full text-lg font-semibold">
+                        Current Version: v1.0.3 (Ready)
                     </div>
                 </div>
                 
-                <div class="mt-6 p-4 bg-green-50 border-l-4 border-green-400">
-                    <h4 class="text-lg font-bold text-green-800">✅ Dependencies Updated!</h4>
-                    <div class="text-green-700 mt-2 text-sm">
-                        <p><strong>All available updates have been applied:</strong></p>
-                        <div class="bg-green-100 p-3 rounded mt-2 text-xs font-mono">
-                            <div class="grid grid-cols-1 gap-1">
-                                <div>📦 <span class="text-blue-600">github.com/cpuguy83/go-md2man/v2</span> <span class="text-green-600">✓ Updated to v2.0.7</span></div>
-                                <div>🔍 <span class="text-blue-600">github.com/google/go-cmp</span> <span class="text-green-600">✓ Updated to v0.7.0</span></div>
-                                <div>🧪 <span class="text-blue-600">github.com/google/gofuzz</span> <span class="text-green-600">✓ Updated to v1.2.0</span></div>
-                                <div>📝 <span class="text-blue-600">github.com/russross/blackfriday/v2</span> <span class="text-green-600">✓ Updated to v2.1.0</span></div>
-                                <div>🧪 <span class="text-blue-600">github.com/stretchr/testify</span> <span class="text-green-600">✓ Updated to v1.10.0</span></div>
-                                <div>⚡ <span class="text-blue-600">github.com/urfave/cli</span> <span class="text-green-600">✓ Updated to v1.22.16</span></div>
-                                <div>📖 <span class="text-blue-600">github.com/yuin/goldmark</span> <span class="text-green-600">✓ Updated to v1.7.12</span></div>
-                                <div>🔧 <span class="text-blue-600">golang.org/x/tools</span> <span class="text-green-600">✓ Updated to v0.34.0</span></div>
+                <!-- Changelog -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-6">📝 Changelog</h3>
+                    <div class="space-y-6">
+                        <!-- v1.0.3 -->
+                        <div class="border-l-4 border-green-500 pl-6">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.0.3</span>
+                                <span class="text-gray-600">Ready for Release</span>
                             </div>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• 11 dependency updates for enhanced security and performance</li>
+                                <li>• Fixed sample.opml by removing broken RSS feed</li>
+                                <li>• Enhanced build pipeline with intelligent version detection</li>
+                                <li>• Improved documentation and release management</li>
+                            </ul>
                         </div>
                         
-                        <div class="mt-3 p-3 bg-green-50 border border-green-200 rounded">
-                            <p class="text-green-800 font-semibold">🎉 Ready for Release!</p>
-                            <p class="text-green-700 text-xs mt-1">
-                                All dependencies successfully updated. <strong>Core functionality (gofeed) remains stable.</strong>
-                                Testing completed - no breaking changes detected.
-                            </p>
+                        <!-- v1.0.2 -->
+                        <div class="border-l-4 border-blue-500 pl-6">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.0.2</span>
+                                <span class="text-gray-600">Previous Release</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Major dependency updates</li>
+                                <li>• Enhanced documentation and testing guide</li>
+                                <li>• Updated project website</li>
+                            </ul>
                         </div>
                         
-                        <div class="mt-3">
-                            <p><strong>Update Summary:</strong></p>
-                            <ul class="list-disc list-inside ml-4 mt-1 text-xs">
-                                <li><span class="text-green-600">🟢 Testing frameworks:</span> Enhanced test capabilities</li>
-                                <li><span class="text-green-600">🟢 Documentation tools:</span> Improved markdown processing</li>
-                                <li><span class="text-green-600">🟢 CLI framework:</span> Bug fixes and improvements</li>
+                        <!-- v1.0.1 -->
+                        <div class="border-l-4 border-gray-400 pl-6">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.0.1</span>
+                                <span class="text-gray-600">Stable</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Initial stable release</li>
+                                <li>• Core OPML to JSON conversion</li>
+                                <li>• RSS feed fetching and concurrent processing</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                
-                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-400">
-                    <h4 class="text-lg font-bold text-blue-800">Next: Ready to Release v1.0.2</h4>
-                    <div class="text-blue-700 mt-2 text-sm">
-                        <p><strong>All prerequisites completed:</strong></p>
-                        <pre class="bg-blue-100 p-2 rounded mt-1 text-xs">
-# ✅ Dependencies updated (go get -u ./... completed)
-# ✅ Module files cleaned (go mod tidy completed)  
-# ✅ Tests passing (go test ./... successful)
-# ✅ No race conditions detected
 
-# Ready to build and release:
-go build -o build/Go-OPML cmd/go-opml/main.go
-./build/Go-OPML -input examples/sample.opml -output test.json -fetch-rss
-
-# Create release:
-git tag v1.0.2
-git push origin v1.0.2
-                        </pre>
+                <!-- Release Commands -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h4 class="text-lg font-semibold mb-4">🚀 Ready to Release v1.0.3</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium mb-2">Release Commands:</h5>
+                            <pre class="text-xs bg-gray-800 text-gray-100 p-3 rounded"><code>git add .
+git commit -m 'Release v1.0.3: Fix sample.opml, enhance build pipeline'
+git tag v1.0.3
+git push origin main
+git push origin v1.0.3</code></pre>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">Available Binaries:</h5>
+                            <ul class="text-sm space-y-1">
+                                <li>• Go-OPML.exe (Windows 64-bit)</li>
+                                <li>• Go-OPML-mac-intel (macOS Intel)</li>
+                                <li>• Go-OPML-mac-arm64 (macOS Apple Silicon)</li>
+                                <li>• Go-OPML-linux (Linux 64-bit)</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400">
-                    <h4 class="text-lg font-bold text-yellow-800">Release Checklist - v1.0.2</h4>
-                    <ul class="list-disc list-inside text-yellow-700 mt-2">
-                        <li>✅ Dependencies updated and tested</li>
-                        <li>✅ All tests passing</li>
-                        <li>✅ Documentation updated</li>
-                        <li>🔄 Version number increment (ready)</li>
-                        <li>🔄 Cross-platform binaries (ready to build)</li>
-                        <li>🔄 Release notes (dependency updates)</li>
-                        <li>🔄 GitHub release (ready to create)</li>
-                    </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-blue-600 text-white py-4 mt-8">
-        <div class="container mx-auto px-4 text-center">
-          <p>
-            Made with love <span class="text-red-500">❤</span> by 
-            <a href="https://madi.se" class="underline hover:text-blue-200">Madi.se</a> 
-            <a href="https://github.com/jadmadi" class="underline hover:text-blue-200">@jadmadi       <i class="fab fa-github"></i>
-            </a>
-          </p>
+    <!-- Enhanced Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold mb-2">Go-OPML</h3>
+                <p class="opacity-90">Making podcast data management simple and efficient</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://github.com/jadmadi/Go-OPML" class="hover:text-blue-200 transition-colors">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://pkg.go.dev/github.com/jadmadi/Go-OPML" class="hover:text-blue-200 transition-colors">
+                    <i class="fas fa-book text-2xl"></i>
+                </a>
+            </div>
+            <p class="text-sm opacity-80">
+                Made with ❤️ by 
+                <a href="https://madi.se" class="underline hover:text-blue-200">Jad Madi</a> • 
+                <a href="https://github.com/jadmadi" class="underline hover:text-blue-200">@jadmadi</a>
+            </p>
         </div>
-      </footer>
-      
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             hljs.highlightAll();
 
-            const navLinks = document.querySelectorAll('nav a');
+            // Smooth scrolling for navigation
+            const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = e.target.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
+            });
+
+            // Add scroll effect to navbar
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('shadow-xl');
+                } else {
+                    navbar.classList.remove('shadow-xl');
+                }
             });
         });
     </script>
