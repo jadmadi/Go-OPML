@@ -49,7 +49,7 @@ log_info "Latest tag: $LATEST_TAG"
 if [ "$LATEST_TAG" = "v1.0.2" ]; then
     NEXT_VERSION="v1.0.3"
 elif [ "$LATEST_TAG" = "v1.0.3" ]; then
-    NEXT_VERSION="v1.0.4"
+    NEXT_VERSION="v1.1.0"  # Minor version bump for infrastructure improvements
 else
     # Extract version numbers and increment patch
     VERSION_NUMBER=$(echo $LATEST_TAG | sed 's/v//')
@@ -189,20 +189,22 @@ fi
 # Step 8: Commit changes
 log_info "8. Committing changes..."
 git add .
-git commit -m "Release $NEXT_VERSION: Enhanced build pipeline, dependency updates, modernized website
+git commit -m "Release $NEXT_VERSION: Infrastructure improvements and code quality enhancements
 
-- Updated dependencies for better security and performance
-- Enhanced build pipeline with intelligent version detection  
-- Fixed sample.opml by removing broken RSS feed
-- Modernized website with improved UX and design
-- Added automated release script for all platforms
-- Cross-platform binaries: Linux, Windows, macOS (Intel & ARM64)
+- Added comprehensive CI/CD pipeline with GitHub Actions
+- Implemented automated testing across multiple Go versions
+- Added golangci-lint configuration for code quality
+- Created missing pkg/rss package with RSS fetching functionality
+- Added GitHub issue templates and pull request template
+- Implemented security policy and vulnerability reporting
+- Fixed linting issues and improved code structure
+- Enhanced project documentation and governance
 
-Binaries:
-- Go-OPML-linux (Linux 64-bit)
-- Go-OPML.exe (Windows 64-bit) 
-- Go-OPML-mac-intel (macOS Intel 64-bit)
-- Go-OPML-mac-arm64 (macOS Apple Silicon)"
+Infrastructure:
+- CI/CD: Automated testing, linting, and binary building
+- Templates: Bug reports, feature requests, PR guidelines
+- Security: Comprehensive security policy for v1.1.0
+- Code Quality: Linting rules and automated checks"
 
 # Step 9: Create and push tag
 log_info "9. Creating and pushing tag $NEXT_VERSION..."

@@ -4,10 +4,10 @@
 
 | Version | Supported          | Status |
 | ------- | ------------------ | ------ |
-| 1.0.3   | :white_check_mark: | Latest |
-| 1.0.2   | :white_check_mark: | Supported |
-| 1.0.1   | :warning:          | Limited Support |
-| < 1.0.1 | :x:                | Unsupported |
+| 1.1.0   | :white_check_mark: | Latest |
+| 1.0.3   | :white_check_mark: | Supported |
+| 1.0.2   | :warning:          | Limited Support |
+| < 1.0.2 | :x:                | Unsupported |
 
 ## Reporting a Vulnerability
 
@@ -38,7 +38,7 @@ When using Go-OPML:
 1. **Input Validation**: Always validate OPML input files before processing
 2. **Network Security**: Use appropriate timeout settings for RSS fetching (default: 30s)
 3. **Permissions**: Run with minimal required permissions
-4. **Updates**: Keep Go-OPML updated to the latest version (currently v1.0.3)
+4. **Updates**: Keep Go-OPML updated to the latest version (currently v1.1.0)
 5. **Dependencies**: Regularly check for dependency updates using `go list -u -m all`
 6. **Isolation**: Consider running in containerized environments for additional isolation
 7. **Monitoring**: Monitor RSS fetch timeouts and failures for unusual patterns
@@ -52,7 +52,13 @@ When using Go-OPML:
 
 ## Changelog of Security Updates
 
-### v1.0.3 (Current)
+### v1.1.0 (Current)
+- Enhanced CI/CD pipeline with automated security checks
+- Comprehensive linting configuration for code quality
+- Improved project governance and security policies
+- Added automated testing across multiple Go versions
+
+### v1.0.3
 - Updated 11 dependencies for enhanced security
 - Improved timeout handling for RSS fetching
 - Enhanced error handling to prevent information disclosure

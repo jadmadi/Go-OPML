@@ -78,7 +78,7 @@
                 </div>
                 <div class="text-right">
                     <div class="version-badge text-white px-4 py-2 rounded-full text-sm font-semibold mb-2">
-                        v1.0.3 Ready for Release
+                        v1.1.0 Ready for Release
                     </div>
                     <a href="https://github.com/jadmadi/Go-OPML" 
                        class="inline-flex items-center px-6 py-3 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-all duration-300">
@@ -90,23 +90,23 @@
             
             <!-- Latest Release Announcement -->
             <div class="glass-card rounded-xl p-6 mb-8">
-                <h2 class="text-2xl font-semibold mb-4">🚀 What's New in v1.0.3</h2>
+                <h2 class="text-2xl font-semibold mb-4">🚀 What's New in v1.1.0</h2>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <h3 class="font-semibold mb-2">✅ Dependency Updates</h3>
-                        <p class="text-sm opacity-90">11 dependencies updated for better security and performance</p>
+                        <h3 class="font-semibold mb-2">🔄 CI/CD Pipeline</h3>
+                        <p class="text-sm opacity-90">Comprehensive GitHub Actions with automated testing</p>
                     </div>
                     <div>
-                        <h3 class="font-semibold mb-2">🔧 Enhanced Build Pipeline</h3>
-                        <p class="text-sm opacity-90">Intelligent version detection and automated release management</p>
+                        <h3 class="font-semibold mb-2">🔍 Code Quality</h3>
+                        <p class="text-sm opacity-90">golangci-lint configuration and automated checks</p>
                     </div>
                     <div>
-                        <h3 class="font-semibold mb-2">🛠️ Sample File Fix</h3>
-                        <p class="text-sm opacity-90">Removed broken RSS feed from sample.opml</p>
+                        <h3 class="font-semibold mb-2">📦 Missing Package</h3>
+                        <p class="text-sm opacity-90">Added pkg/rss package with RSS fetching functionality</p>
                     </div>
                     <div>
-                        <h3 class="font-semibold mb-2">📚 Improved Documentation</h3>
-                        <p class="text-sm opacity-90">Better build process and release management docs</p>
+                        <h3 class="font-semibold mb-2">📋 GitHub Templates</h3>
+                        <p class="text-sm opacity-90">Issue templates, PR template, and security policy</p>
                     </div>
                 </div>
             </div>
@@ -319,7 +319,7 @@ sys     0m0.238s
             <div class="bg-white rounded-xl shadow-lg p-8">
                 <div class="text-center mb-8">
                     <div class="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full text-lg font-semibold">
-                        Current Version: v1.0.3 (Ready)
+                        Current Version: v1.1.0 (Ready)
                     </div>
                 </div>
                 
@@ -327,11 +327,27 @@ sys     0m0.238s
                 <div class="mb-8">
                     <h3 class="text-2xl font-bold mb-6">📝 Changelog</h3>
                     <div class="space-y-6">
-                        <!-- v1.0.3 -->
+                        <!-- v1.1.0 -->
                         <div class="border-l-4 border-green-500 pl-6">
                             <div class="flex items-center mb-2">
-                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.0.3</span>
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.1.0</span>
                                 <span class="text-gray-600">Ready for Release</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Comprehensive CI/CD pipeline with GitHub Actions</li>
+                                <li>• golangci-lint configuration and code quality improvements</li>
+                                <li>• Added missing pkg/rss package with RSS fetching</li>
+                                <li>• GitHub templates: issues, PRs, and security policy</li>
+                                <li>• Multi-version Go testing (1.20, 1.21, 1.22)</li>
+                                <li>• Enhanced project governance and automation</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- v1.0.3 -->
+                        <div class="border-l-4 border-blue-500 pl-6">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3">v1.0.3</span>
+                                <span class="text-gray-600">Previous Release</span>
                             </div>
                             <ul class="text-sm text-gray-700 space-y-1">
                                 <li>• 11 dependency updates for enhanced security and performance</li>
@@ -371,15 +387,15 @@ sys     0m0.238s
 
                 <!-- Release Commands -->
                 <div class="bg-gray-50 rounded-lg p-6">
-                    <h4 class="text-lg font-semibold mb-4">🚀 Ready to Release v1.0.3</h4>
+                    <h4 class="text-lg font-semibold mb-4">🚀 Ready to Release v1.1.0</h4>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <h5 class="font-medium mb-2">Release Commands:</h5>
                             <pre class="text-xs bg-gray-800 text-gray-100 p-3 rounded"><code>git add .
-git commit -m 'Release v1.0.3: Fix sample.opml, enhance build pipeline'
-git tag v1.0.3
-git push origin main
-git push origin v1.0.3</code></pre>
+git commit -m 'Release v1.1.0: Infrastructure improvements'
+git tag v1.1.0
+git push origin master
+git push origin v1.1.0</code></pre>
                         </div>
                         <div>
                             <h5 class="font-medium mb-2">Available Binaries:</h5>

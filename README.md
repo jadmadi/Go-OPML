@@ -5,17 +5,17 @@
 
 Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Language) files to JSON format and optionally fetches RSS feeds for podcasts listed in the OPML file.
 
-## 🚀 Latest Release: v1.0.3 (Released)
+## 🚀 Latest Release: v1.1.0 (Ready)
 
-**What's New in v1.0.3:**
-- ✅ **Dependency Updates**: Additional dependencies updated to latest stable versions
-- ✅ **Sample File Fix**: Removed broken RSS feed from sample.opml  
-- ✅ **Enhanced Build Pipeline**: Intelligent version detection and automated release management
-- ✅ **Automated Release Script**: Complete release automation with cross-platform binary building
-- ✅ **Improved Documentation**: Better build and release process documentation
-- ✅ **Performance**: Updated libraries for better performance and security
+**What's New in v1.1.0:**
+- ✅ **CI/CD Pipeline**: Comprehensive GitHub Actions workflow with automated testing
+- ✅ **Code Quality**: golangci-lint configuration and automated code quality checks
+- ✅ **Missing Package**: Added pkg/rss package with RSS fetching functionality
+- ✅ **GitHub Templates**: Issue templates, PR template, and security policy
+- ✅ **Infrastructure**: Enhanced project governance and automation
+- ✅ **Testing**: Multi-version Go testing (1.20, 1.21, 1.22)
 
-**Status:** Released and available on GitHub with cross-platform binaries.
+**Status:** Ready for release with significant infrastructure improvements.
 
 ## Package Documentation
 
@@ -24,7 +24,7 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
 ## Table of Contents
 
 - [Go-OPML](#go-opml)
-  - [🚀 Latest Release: v1.0.3 (Released)](#-latest-release-v103-ready)
+  - [🚀 Latest Release: v1.1.0 (Ready)](#-latest-release-v110-ready)
   - [Package Documentation](#package-documentation)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
@@ -70,6 +70,17 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
 - Control over concurrent feed fetches
 
 ## Changelog
+
+### v1.1.0 (Ready for Release)
+- **CI/CD Pipeline**: Added comprehensive GitHub Actions workflow
+  - Automated testing across Go versions 1.20, 1.21, 1.22
+  - golangci-lint integration for code quality
+  - Automated binary building and release uploads
+- **Missing Components**: Added pkg/rss package with RSS fetching functionality
+- **GitHub Templates**: Added issue templates, PR template, and security policy
+- **Code Quality**: Fixed linting issues and improved code structure
+- **Infrastructure**: Enhanced project governance and automation
+- **Testing**: Improved test structure and coverage
 
 ### v1.0.3 (Released)
 - **Dependencies**: Updated additional dependencies to latest stable versions
