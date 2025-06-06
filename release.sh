@@ -1,5 +1,5 @@
 #!/bin/bash
-# Automated release script for Go-OPML
+# Automated release script for Go-OPML  
 # This script handles the complete release process including building binaries for all platforms
 
 set -e  # Exit on any error
