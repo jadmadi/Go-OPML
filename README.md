@@ -15,7 +15,7 @@ Go-OPML is a command-line tool that converts OPML (Outline Processor Markup Lang
 - ✅ **Improved Documentation**: Better build and release process documentation
 - ✅ **Performance**: Updated libraries for better performance and security
 
-**Ready for Release:** All tests passing (functionality verified), dependencies updated, documentation enhanced.
+**Status:** Released and available on GitHub with cross-platform binaries.
 
 ## Package Documentation
 
@@ -71,7 +71,7 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
 
 ## Changelog
 
-### v1.0.3 (Ready for Release)
+### v1.0.3 (Released)
 - **Dependencies**: Updated additional dependencies to latest stable versions
   - `github.com/cpuguy83/go-md2man/v2` v2.0.0 → v2.0.7
   - `github.com/google/go-cmp` v0.6.0 → v0.7.0
@@ -83,6 +83,7 @@ The official package documentation is now available on [pkg.go.dev](https://pkg.
   - `golang.org/x/tools` v0.33.0 → v0.34.0
 - **Sample File**: Fixed sample.opml by removing broken RSS feed (404 error)
 - **Build Pipeline**: Enhanced build.sh with intelligent version detection
+- **Automated Release**: Added complete release automation script
 - **Documentation**: Improved release management and build process documentation
 - **Core**: Maintained backward compatibility, no breaking changes
 
