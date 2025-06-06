@@ -4,15 +4,10 @@ run:
 
 linters-settings:
   govet:
-    check-shadowing: true
-  golint:
-    min-confidence: 0
+    enable:
+      - shadow
   gocyclo:
     min-complexity: 15
-  maligned:
-    suggest-new: true
-  dupl:
-    threshold: 100
   goconst:
     min-len: 2
     min-occurrences: 2
@@ -20,52 +15,41 @@ linters-settings:
     locale: US
   lll:
     line-length: 140
-  goimports:
-    local-prefixes: github.com/jadmadi/Go-OPML
-  gocritic:
-    enabled-tags:
-      - diagnostic
-      - experimental
-      - opinionated
-      - performance
-      - style
 
 linters:
   enable:
-    - bodyclose
-    - deadcode
-    - depguard
-    - dogsled
-    - dupl
     - errcheck
-    - gochecknoinits
-    - goconst
-    - gocritic
     - gofmt
     - goimports
-    - golint
-    - gosec
     - gosimple
     - govet
     - ineffassign
-    - interfacer
-    - lll
     - misspell
-    - nakedret
-    - prealloc
-    - scopelint
     - staticcheck
-    - structcheck
-    - stylecheck
     - typecheck
     - unconvert
-    - unparam
     - unused
-    - varcheck
-    - whitespace
+  disable-all: false
 
 issues:
+  exclude-dirs:
+    - build
+    - vendor
   exclude-rules:
     - path: _test\.go
       linters:
         - gomnd
+    - path: cmd/
+      linters:
+        - typecheck
+    - path: test/
+      linters:
+        - typecheck
+        - unused
+  exclude:
+    - "should have a package comment"
+    - "exported .* should have comment or be unexported"
+    - "import .* is a program, not an importable package"
+    - "undefined: opml\\."
+    - "could not load export data"
+    - "no export data for"

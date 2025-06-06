@@ -84,6 +84,38 @@ log_info "2. Checking dependencies..."
 go mod tidy
 go mod verify
 
+# Step 2.5: Run linting (optional but recommended)
+log_info "2.5. Running code quality checks..."
+
+# Check if golangci-lint is available, try multiple locations
+GOLANGCI_LINT=""
+if command -v golangci-lint &> /dev/null; then
+    GOLANGCI_LINT="golangci-lint"
+elif [ -f "$(go env GOPATH)/bin/golangci-lint" ]; then
+    GOLANGCI_LINT="$(go env GOPATH)/bin/golangci-lint"
+elif [ -f "$HOME/go/bin/golangci-lint" ]; then
+    GOLANGCI_LINT="$HOME/go/bin/golangci-lint"
+fi
+
+if [ -n "$GOLANGCI_LINT" ]; then
+    log_info "   Running golangci-lint..."
+    $GOLANGCI_LINT run --timeout=5m || log_warning "Linting issues found - please review"
+else
+    log_warning "golangci-lint not found - installing..."
+    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    
+    # Try again after installation
+    if [ -f "$(go env GOPATH)/bin/golangci-lint" ]; then
+        log_info "   Running golangci-lint..."
+        "$(go env GOPATH)/bin/golangci-lint" run --timeout=5m || log_warning "Linting issues found - please review"
+    elif [ -f "$HOME/go/bin/golangci-lint" ]; then
+        log_info "   Running golangci-lint..."
+        "$HOME/go/bin/golangci-lint" run --timeout=5m || log_warning "Linting issues found - please review"
+    else
+        log_warning "Failed to install golangci-lint - skipping linting"
+    fi
+fi
+
 # Step 3: Check for dependency updates
 log_info "3. Checking for dependency updates..."
 UPDATES=$(go list -u -m all | grep '\[.*\]' | wc -l)

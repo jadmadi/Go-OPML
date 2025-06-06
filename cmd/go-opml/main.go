@@ -103,12 +103,12 @@ func main() {
 			}
 
 			if *fetchRSS {
-				episodes, err := FetchRSSFeed(outline.XMLUrl, *maxEpisodes, *timeout)
-				if err != nil {
-					log.Printf("Error fetching RSS for %s: %v", outline.Title, err)
-				} else {
-					podcast.Episodes = episodes
+				episodes, fetchErr := FetchRSSFeed(outline.XMLUrl, *maxEpisodes, *timeout)
+				if fetchErr != nil {
+					log.Printf("Error fetching RSS for %s: %v", outline.Title, fetchErr)
+					return
 				}
+				podcast.Episodes = episodes
 			}
 
 			podcastChan <- podcast
