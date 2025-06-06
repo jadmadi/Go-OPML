@@ -175,11 +175,7 @@ Binaries:
 # Step 9: Create and push tag
 log_info "9. Creating and pushing tag $NEXT_VERSION..."
 git tag $NEXT_VERSION
-<<<<<<< HEAD
 git push origin $BRANCH
-=======
-git push origin main
->>>>>>> 74b842961efc81c74660e67b987e41ff88f1e1d3
 git push origin $NEXT_VERSION
 
 log_success "Tag $NEXT_VERSION created and pushed!"
